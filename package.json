@@ -1,0 +1,1 @@
+{"name":"centrdb","private":true,"type":"module","scripts":{"test":"node --test tests/github-store.test.js"}}
