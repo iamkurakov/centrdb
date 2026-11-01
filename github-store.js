@@ -7,7 +7,7 @@ export function decode(base64) {
   return new TextDecoder().decode(Uint8Array.from(atob(base64.replace(/\s/g,'')), c=>c.charCodeAt(0)));
 }
 export class GitHubStore {
-  constructor(repository, token, request=fetch) {
+  constructor(repository, token, request=(...args)=>globalThis.fetch(...args)) {
     if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)) throw new Error('Укажите репозиторий в формате владелец/имя');
     this.repository=repository; this.token=token; this.request=request;
   }
