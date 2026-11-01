@@ -1,4 +1,4 @@
-import {GitHubStore} from './github-store.js';
+import {GitHubStore} from './github-store.js?v=20261101-2';
 let store=null, snapshot=null, reportURL=null, busy=false, generation=0;
 const $=id=>document.getElementById(id);
 function error(e){$('message').textContent=e.message;}
