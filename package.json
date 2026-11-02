@@ -1,1 +1,17 @@
-{"name":"centrdb","private":true,"type":"module","scripts":{"test":"node --test tests/github-store.test.js"}}
+{
+  "name": "centrdb",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/github-store.test.js",
+    "test:rfm": "node --test demo-source/coded-data.test.mjs",
+    "build:workspace": "node demo-source/build.mjs"
+  },
+  "dependencies": {
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.3"
+  }
+}
