@@ -1,4 +1,4 @@
-import {SEGMENTS,classify,validateRows,csvRows,parseDate} from './core.js?v=20261102-copy2';
+import {SEGMENTS,classify,validateRows,csvRows,parseDate} from './core.js?v=20261102-copy3';
 const $=id=>document.getElementById(id),OUTCOMES=[['','Ещё не обработан'],['no_answer','Нет ответа'],['contacted','Связались'],['booked','Записался'],['attended','Пришёл'],['paid','Новая оплата'],['prepaid','Пришёл по старой оплате'],['finished','Лечение завершено'],['declined','Отказался от контакта']];
 let state={schemaVersion:1,rows:[],asOf:'2026-11-02',period:'',work:{},checks:{},importedAt:null},historical=true,page=0,saving=Promise.resolve();
 function message(s,bad=false){$('status').textContent=s;$('status').className='status'+(bad?' error':'');}
