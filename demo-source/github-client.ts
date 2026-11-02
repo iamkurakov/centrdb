@@ -1,0 +1,14 @@
+export const REPOSITORY='iamkurakov/centrdb-data';
+export const BASE_PATH='data/client-base-2026-11-02.json';
+export const WORK_PATH='work/patient-workspace.json';
+export function encode(s:string){const bytes=new TextEncoder().encode(s);let out='';for(let i=0;i<bytes.length;i+=8192)out+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(out);}
+export function decode(s:string){return new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,'')),x=>x.charCodeAt(0)));}
+export class GitHubClient{
+ token:string;branch='main';login='';request:typeof fetch;
+ constructor(token:string,request:typeof fetch=globalThis.fetch.bind(globalThis)){this.token=token;this.request=request;}
+ async api(path:string,options:any={}){let r:Response;try{r=await this.request('https://api.github.com/'+path,{...options,cache:'no-store',redirect:'error',signal:AbortSignal.timeout(20000),headers:{Accept:'application/vnd.github+json',Authorization:'Bearer '+this.token,'X-GitHub-Api-Version':'2026-03-10',...options.headers}});}catch{throw Error('Нет связи с GitHub. Текст в форме сохранён. Повторите попытку.');}if(!r.ok){const e:any=new Error(r.status===401?'Ключ доступа недействителен или истёк. Подключитесь заново.':r.status===403?'GitHub отклонил запрос. Проверьте разрешение на запись и лимит доступа.':r.status===404?'Закрытая база недоступна этому ключу.':r.status===409||r.status===422?'Запись изменена коллегой.':'GitHub не подтвердил операцию. Код '+r.status);e.status=r.status;throw e;}return r;}
+ async connect(){const repo=await(await this.api('repos/'+REPOSITORY)).json();if(!repo.private)throw Error('Рабочее хранилище должно оставаться закрытым');if(repo.archived||repo.permissions?.push===false)throw Error('Ключ не разрешает запись в рабочую базу');this.branch=repo.default_branch;const u=await(await this.api('user')).json();this.login=u.login;return this;}
+ async read(path:string,optional=false){const endpoint='repos/'+REPOSITORY+'/contents/'+path.split('/').map(encodeURIComponent).join('/')+'?ref='+encodeURIComponent(this.branch);let r:Response;try{r=await this.api(endpoint);}catch(e:any){if(optional&&e.status===404)return null;throw e;}const v=await r.json();if(v.type!=='file'||!v.sha)throw Error('Неподдерживаемый файл в рабочем хранилище');if(v.encoding==='base64')return {sha:v.sha,text:decode(v.content)};if(v.encoding==='none'){const raw=await this.api(endpoint,{headers:{Accept:'application/vnd.github.raw+json'}});return {sha:v.sha,text:await raw.text()};}throw Error('Не удалось прочитать рабочий файл');}
+ async write(path:string,value:any,sha?:string){const body={message:'CDB: save patient work',content:encode(JSON.stringify(value)),branch:this.branch,...(sha?{sha}:{})};const r=await this.api('repos/'+REPOSITORY+'/contents/'+path.split('/').map(encodeURIComponent).join('/'),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});return r.json();}
+ close(){this.token='';}
+}
