@@ -1,9 +1,1 @@
-import {demoFetch as localFetch,exportBackup as localBackup} from './demo-store';import {GitHubClient} from './github-client';import {SharedWork} from './github-work';
-let shared:SharedWork|null=null;
-export const SESSION_KEY='centrdb-github-session-v1';
-export function currentShared(){return shared;}
-export async function connectShared(token:string,name:string,remember:boolean){if(!token.trim())throw Error('Введите ключ доступа GitHub');const client=new GitHubClient(token.trim());try{await client.connect();const next=new SharedWork(client,name);await next.snapshot();shared?.close();shared=next;localStorage.setItem('centrdb-operator',next.name);if(remember)sessionStorage.setItem(SESSION_KEY,JSON.stringify({token:token.trim(),name:next.name}));else sessionStorage.removeItem(SESSION_KEY);return next.name;}catch(e){client.close();throw e;}}
-export function disconnectShared(){shared?.close();shared=null;sessionStorage.removeItem(SESSION_KEY);}
-export async function restoreShared(){let saved:any;try{saved=JSON.parse(sessionStorage.getItem(SESSION_KEY)||'null')}catch{sessionStorage.removeItem(SESSION_KEY);return null;}if(!saved?.token)return null;try{return await connectShared(saved.token,saved.name,true);}catch(e){sessionStorage.removeItem(SESSION_KEY);throw e;}}
-export async function workFetch(path:string,options:any={}){if(!shared)return localFetch(path,options);try{if(!options.method||options.method==='GET')return Response.json(await shared.snapshot());return await shared.save(JSON.parse(options.body),path==='/api/feedback');}catch(e:any){return Response.json({error:e.message||'Сохранение не подтверждено'},{status:e.status===401?401:503});}}
-export async function exportWorkBackup(){if(!shared)return localBackup();return {format:'centrdb-backup',version:1,mode:'real',exportedAt:new Date().toISOString(),data:await shared.snapshot()};}
+export {demoFetch as workFetch,exportBackup as exportWorkBackup} from './demo-store';
