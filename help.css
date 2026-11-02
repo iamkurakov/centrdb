@@ -1,0 +1,21 @@
+/* Небольшой знак вопроса в каждом смысловом блоке. */
+.cdb-help-target{position:relative;padding-right:40px!important}
+.cdb-help-target.tbl,.cdb-help-target.chart,.cdb-help-target.hbars,.cdb-help-target.table-scroll{padding-top:35px}
+.cdb-help-target.entry{padding-right:0!important}
+.cdb-help-target.entry .entry-link{padding-right:60px}
+.cdb-help-target.entry>.cdb-help-button{top:18px;right:14px}
+.cdb-help-target.toolbar{padding-top:12px}
+.cdb-help-target.check{padding-right:44px!important}
+.cdb-help-target.field{padding-right:35px!important}
+.cdb-help-button{position:absolute;top:8px;right:8px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:25px;height:25px;border:1px solid #8eaaa0;border-radius:50%;background:#f2f7f4;color:#274d40!important;font:700 14px/1 system-ui,sans-serif;text-decoration:none!important;cursor:pointer;z-index:2;opacity:1;flex-shrink:0}
+.cdb-help-button:hover,.cdb-help-button[aria-expanded=true]{background:#315d4c;color:#fff!important;border-color:#315d4c}
+.cdb-help-button:focus-visible,.cdb-help-close:focus-visible{outline:3px solid #d88a3d;outline-offset:3px}
+.cdb-help-heading{min-height:28px}
+.cdb-help-heading>.cdb-help-button{top:0}
+.cdb-help-panel{position:fixed;box-sizing:border-box;z-index:10000;width:390px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);overflow:auto;padding:24px 28px;background:#fffdf7;color:#203a32;border:1px solid #91a89d;border-radius:12px;box-shadow:0 12px 48px #142c3433;font:16px/1.65 system-ui,sans-serif;text-align:left}
+.cdb-help-panel[hidden]{display:none!important}
+.cdb-help-panel h2{margin:0 24px 12px 0!important;border:0!important;padding:0!important;font:700 19px/1.35 system-ui,sans-serif!important;color:#203a32!important;letter-spacing:normal!important;text-transform:none!important}
+.cdb-help-panel p{margin:0!important;font:16px/1.65 system-ui,sans-serif!important;color:#203a32!important}
+.cdb-help-close{position:absolute;top:8px;right:8px;border:0;background:transparent;color:#315d4c;width:32px;height:32px;min-height:0;padding:0;cursor:pointer;font:25px/1 system-ui,sans-serif}
+@media(max-width:600px){.cdb-help-target{padding-right:34px!important}.cdb-help-button{width:24px;height:24px;right:5px}.cdb-help-panel{padding:22px}.cdb-help-target.entry .entry-link{padding-right:45px}.cdb-help-target.entry>.cdb-help-button{right:7px}}
+@media print{.cdb-help-button,.cdb-help-panel{display:none!important}.cdb-help-target{padding-right:initial!important}}
