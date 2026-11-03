@@ -5,7 +5,8 @@
   "scripts": {
     "test": "node --test tests/github-store.test.js",
     "test:rfm": "node --test demo-source/coded-data.test.mjs",
-    "build:workspace": "node demo-source/build.mjs"
+    "build:workspace": "node demo-source/build.mjs",
+    "test:shared": "node --test demo-source/shared-work.test.mjs"
   },
   "dependencies": {
     "react": "19.2.6",
