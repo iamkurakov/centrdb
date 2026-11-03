@@ -1,0 +1,40 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>ЦДБ · Калькуляторы</title><link rel="stylesheet" href="./report.css?v=20261103-design"><link rel="stylesheet" href="./analysis.css?v=20261103-design"><link rel="stylesheet" href="./help.css?v=20261103-design"><link rel="stylesheet" href="./theme.css?v=20261103-design"><script defer src="./navigation.js?v=20261103-design"></script><script defer src="./calculators.js?v=20261103-design"></script><script defer src="./help.js?v=20261103-design"></script></head><body class="calculator-page"><div data-site-header="calculators"></div><nav class="toc" aria-label="Калькуляторы"><div class="in"><a href="#sales-calculator">Продажи центра</a><a href="#marketing-calculator">Расходы на маркетинг</a></div></nav><main><div class="eyebrow">Сценарии при выбранных условиях</div><h1>Калькуляторы</h1><p class="calculator-intro">Основной расчёт показывает, как меняются годовые продажи при изменении числа пациентов, повторных покупок и цен. Второй помогает оценить рекламный бюджет и срок его возврата.</p><p class="calculator-note">Начальные значения взяты из исходного отчёта. Это примеры для сравнения вариантов: расходы центра известны не полностью, поэтому расчёты не подтверждают фактическую прибыль или свободную вместимость.</p><section id="sales-calculator" class="calculator-main">
+  <div class="eyebrow">Основной калькулятор</div><h2 data-help-key="sales-chain">Как могут меняться продажи</h2>
+  <p class="sub">Передвиньте ползунок или измените число. Отметка «факт» показывает исходное значение из отчёта. Сумма пересчитывается при каждом изменении. Это сценарий при выбранных условиях, а не обещание роста.</p>
+
+  <div class="mdl">
+    <div class="res" aria-live="polite">
+      <div class="res-head">
+        <div class="rh-main"><span class="lbl">Выручка за год<br>факт 26,6 млн ₽</span><div class="total" id="r-total"></div></div>
+        <div class="pills"><span class="pill" id="r-delta" title="Факт — 26,6 млн ₽"></span></div>
+        <button type="button" id="m-reset" class="reset">Вернуть исходные значения</button>
+      </div>
+      <div class="kgrid" id="r-out"></div>
+      <p class="warn" id="r-warn" hidden></p>
+    </div>
+
+    <div class="levers" id="levers"></div>
+  </div>
+</section><section id="marketing-calculator" class="calculator-secondary"><div class="eyebrow">Дополнительный калькулятор</div><h2>Маркетинговый калькулятор</h2><p>Бюджет, цена привлечения, доля покупателей курса и предполагаемая доля после затрат определяют результат для одной группы новых пациентов.</p><h3 data-help-key="marketing-payback">Результат при выбранных условиях</h3>
+  <div class="calc">
+    <div>
+      <div class="field"><label for="i-budget">Рекламный бюджет в месяц, ₽</label><input id="i-budget" type="number" min="0" step="5000" value="150000"><small>Сейчас ≈ 150 000 ₽.</small></div>
+      <div class="field"><label for="i-cac">Затраты на одного нового пациента, ₽</label><input id="i-cac" type="number" min="1" step="100" value="3200"><small>В примере ≈ 3 200 ₽: общий бюджет разделён на всех новых пациентов. Реальная цена пациента из рекламы неизвестна.</small></div>
+      <div class="field"><label for="i-conv">Покупают курс в первый месяц, %</label><input id="i-conv" type="number" min="0" max="100" step="1" value="41"><small>Начальное значение сценария. Задайте долю для выбранного источника и группы пациентов; конверсия всех обращений не равна конверсии рекламы.</small></div>
+      <div class="field"><label for="i-margin">Какая доля остаётся после затрат, %</label><input id="i-margin" type="number" min="0" max="100" step="5" value="50"><small>Неизвестна. 50% — условное значение, замените.</small></div>
+    </div>
+    <div class="out" id="calc-out" aria-live="polite"></div>
+  </div>
+  <p class="sub">Расчёт использует суммы покупок из отчёта. Представьте людей, пришедших за один месяц: ответ показывает их покупки сначала за первый месяц, потом за всё большее время.</p>
+<details class="ltv-method"><summary>Примеры расходов на привлечение</summary><h3>Сколько можно потратить на привлечение: примеры при разных расходах</h3>
+  <p>Чтобы оценить возможные расходы на привлечение, умножаем покупки пациента на долю денег, которая остаётся после затрат. Эта доля неизвестна, поэтому ниже четыре условных примера.</p>
+  <div class="tbl"><table>
+    <tr><th>Доля после затрат</th><th class="n">Окупается<br>за 3 мес.</th><th class="n">За 6 мес.</th><th class="n">За 12 мес.</th></tr>
+    <tr><td>30%</td><td class="n">5,7 тыс ₽</td><td class="n">7,2 тыс ₽</td><td class="n">8,8 тыс ₽</td></tr>
+    <tr><td>40%</td><td class="n">7,6 тыс ₽</td><td class="n">9,6 тыс ₽</td><td class="n">11,7 тыс ₽</td></tr>
+    <tr><td>50%</td><td class="n">9,5 тыс ₽</td><td class="n">12,0 тыс ₽</td><td class="n">14,6 тыс ₽</td></tr>
+    <tr><td>60%</td><td class="n">11,4 тыс ₽</td><td class="n">14,5 тыс ₽</td><td class="n">17,5 тыс ₽</td></tr>
+  </table></div>
+  <p class="verdict">3,2 тыс ₽ получены делением общего бюджета на всех новых пациентов, в том числе пришедших по рекомендации. Это не цена пациента из рекламы. В таблице — примеры с предполагаемыми расходами. Окупалась ли реклама, по этим данным неизвестно.</p>
+
+  </details></section></main><footer>ЦДБ · Калькуляторы</footer></body></html>

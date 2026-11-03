@@ -4,8 +4,8 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const source=path.dirname(fileURLToPath(import.meta.url));
 const root=path.basename(source)==='demo-source'?path.dirname(source):source;
-for (const [entry,output] of [['entry.tsx','demo.js'],['cloud-setup.tsx','cloud-setup.js'],['analysis-mount.ts','analysis.js']]) {
+for (const [entry,output] of [['entry.tsx','demo.js'],['cloud-setup.tsx','cloud-setup.js'],['analysis-mount.ts','analysis.js'],['navigation-mount.ts','navigation.js']]) {
   await build({entryPoints:[path.join(source,entry)],outfile:path.join(root,output),bundle:true,minify:true,format:'iife',target:'es2022',jsx:'automatic',define:{'process.env.NODE_ENV':'"production"'},legalComments:'none'});
 }
-if(root!==source)for(const name of ['demo.css','analysis.css'])await fs.copyFile(path.join(source,name),path.join(root,name));
+if(root!==source)for(const name of ['demo.css','analysis.css','theme.css'])await fs.copyFile(path.join(source,name),path.join(root,name));
 console.log('Built shared workspace and owner access page.');

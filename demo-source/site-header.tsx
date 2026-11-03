@@ -1,0 +1,3 @@
+import {useEffect} from 'react';
+import {siteSections,observeHeader} from './site-navigation';
+export default function SiteHeader({current,onNavigate}:{current:string,onNavigate?:(view:string)=>void}){useEffect(observeHeader,[]);return <header className="site-header"><div className="site-header-inner"><a className="site-brand" href="./index.html"><b>ЦДБ</b><span>Центр доктора Бубновского</span></a><nav className="site-menu" aria-label="Основные разделы">{siteSections.map(x=><a key={x.id} href={x.href} aria-current={current===x.id?'page':undefined} onClick={e=>{if(onNavigate&&(x.id==='marketing'||x.id==='clients')&&!e.ctrlKey&&!e.metaKey&&!e.shiftKey&&!e.altKey){e.preventDefault();onNavigate(x.id)}}}>{x.label}</a>)}</nav></div></header>}
