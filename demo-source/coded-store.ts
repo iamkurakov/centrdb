@@ -10,7 +10,9 @@ export async function signIn(password:string,remember:boolean){const c=capsule()
 export async function restoreSession(){let value:any;try{value=JSON.parse(sessionStorage.getItem(SESSION)||'null')}catch{sessionStorage.removeItem(SESSION)}if(!value?.token||!value.actor)return null;const c=capsule();if(new URLSearchParams(location.hash.slice(1)).get('access')&&value.capsule!==c){sessionStorage.removeItem(SESSION);return null}return attach(value,true,value.capsule||'')}
 export function signOut(){active?.close();active=null;sessionStorage.removeItem(SESSION);migrationMessage=''}
 export function migrationStatus(){return migrationMessage}
-export async function snapshot(){if(!active)return {storage:'readonly',actor:null,patients:base.patients.map(p=>({...p,work:{},version:0,assignment:null,nextAllowedAt:null})),contacts:[],feedback:[],events:[],managers:[]};return active.snapshot()}
+export async function snapshot(){if(!active)return {storage:'readonly',actor:null,scripts:{},patients:base.patients.map(p=>({...p,work:{},version:0,assignment:null,nextAllowedAt:null})),contacts:[],feedback:[],events:[],managers:[]};return active.snapshot()}
 export async function save(id:string,direction:number,version:number,entry:any){return (await cloud().save(id,direction,version,entry)).version}
 export async function saveFeedback(direction:number,body:string,owner?:string){return cloud().feedback(direction,body)}
 export const claim=(id:string)=>cloud().claim(id);export const release=(id:string)=>cloud().release(id);export const claimBatch=(direction:number,count=20)=>cloud().claimBatch(direction,count);export const transfer=(id:string,target:string)=>cloud().transfer(id,target);
+
+export const saveScript=(direction:number,variant:number,version:number,text:string)=>cloud().saveScript(direction,variant,version,text);

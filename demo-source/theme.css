@@ -12,7 +12,6 @@ nav.toc{top:var(--site-header-height);z-index:50;margin:0;background:var(--bg)}n
 button,input,select,textarea,summary,a{scroll-margin-block-start:calc(var(--site-header-height) + var(--navh) + 22px);scroll-margin-block-end:24px}
 html{scroll-padding-top:0}#overview,#unit-patient{scroll-margin-top:calc(var(--site-header-height) + var(--navh) + 20px)}
 html{scroll-behavior:auto!important}
-
 /* Скругления карточек, плашек и окон во всех разделах. */
 :root{--radius-sm:9px;--radius-md:15px;--radius-lg:20px}
 .panel,.direction,.segment-tile,.id-card,.team-summary,.table-wrap,.data-panel,.analysis-cards article,.analysis-conclusion,.analysis-end,.plain-note,.notice,.portrait-caution,.ltv-definition,.ltv-method,.cohort-story,.calculators-link,.calculator-note,.capacity-grid article,.metric,.segment,.goal,.script,.def,.who>div,.warn,.kg{border-radius:var(--radius-md)}
@@ -26,3 +25,6 @@ button,.button,.primary,input,select,textarea,.field input,.site-menu a,.work-la
 .drawer-head{border-radius:var(--radius-lg) 0 0 0}
 .home-guide iframe{border-radius:var(--radius-lg)}
 @media(max-width:700px){:root{--radius-md:13px;--radius-lg:17px}.drawer{border-radius:var(--radius-lg) 0 0 var(--radius-lg)}}
+
+/* Общий редактор сценариев. */
+.script-actions>div{display:flex;gap:8px;flex-wrap:wrap}.script-author{font-size:12px;color:var(--muted);margin:10px 0}.script-result:empty{display:none}.script-result{font-size:14px;color:var(--accent)}.script-editor-overlay{position:fixed;inset:0;background:#2b302c88;z-index:110;display:flex;align-items:center;justify-content:center;padding:24px}.script-editor-dialog{width:min(820px,100%);max-height:calc(100dvh - 48px);overflow-y:auto;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;color:var(--ink);box-shadow:0 15px 70px #25271f33}.script-editor-dialog>h2{font-size:32px;margin:0 0 16px}.script-editor-label{display:block;font-size:14px;font-weight:600}.script-editor-label textarea{display:block;width:100%;margin-top:8px;resize:vertical;min-height:230px;font-weight:400;line-height:1.7}.script-editor-count{text-align:right;font-size:12px;color:var(--muted);margin:6px 0 16px}.script-editor-actions{display:flex;gap:10px;flex-wrap:wrap}.script-editor-actions button{font-size:14px}.script-conflict{margin:18px 0}.script-conflict .script{font-size:14px;background:var(--paper);overflow-wrap:anywhere}.script-conflict details{margin:12px 0}.script-conflict summary{cursor:pointer;font-weight:600}.script-conflict>button{font-size:13px}.script-panel .script{overflow-wrap:anywhere}@media(max-width:700px){.script-editor-overlay{padding:12px}.script-editor-dialog{padding:20px;max-height:calc(100dvh - 24px)}.script-editor-dialog>h2{font-size:27px}.script-editor-actions>button{width:100%}.script-actions{gap:12px}.script-actions>div{gap:6px}}
