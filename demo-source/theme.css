@@ -12,3 +12,17 @@ nav.toc{top:var(--site-header-height);z-index:50;margin:0;background:var(--bg)}n
 button,input,select,textarea,summary,a{scroll-margin-block-start:calc(var(--site-header-height) + var(--navh) + 22px);scroll-margin-block-end:24px}
 html{scroll-padding-top:0}#overview,#unit-patient{scroll-margin-top:calc(var(--site-header-height) + var(--navh) + 20px)}
 html{scroll-behavior:auto!important}
+
+/* Скругления карточек, плашек и окон во всех разделах. */
+:root{--radius-sm:9px;--radius-md:15px;--radius-lg:20px}
+.panel,.direction,.segment-tile,.id-card,.team-summary,.table-wrap,.data-panel,.analysis-cards article,.analysis-conclusion,.analysis-end,.plain-note,.notice,.portrait-caution,.ltv-definition,.ltv-method,.cohort-story,.calculators-link,.calculator-note,.capacity-grid article,.metric,.segment,.goal,.script,.def,.who>div,.warn,.kg{border-radius:var(--radius-md)}
+.kpis{border-radius:var(--radius-md);overflow:hidden}
+button,.button,.primary,input,select,textarea,.field input,.site-menu a,.work-layout>aside button,.tabs button,.calculator-order a,nav.toc a{border-radius:var(--radius-sm)}
+.badge,.tag,.pill,.rfm-code{border-radius:999px}
+.calculator-page .res,.calculator-page .levers,.calculator-page .out{border-radius:var(--radius-lg)}
+.calculator-page .num{border-radius:var(--radius-sm)}
+.cdb-help-panel,.cloud-login{border-radius:var(--radius-lg)}
+.drawer{border-radius:var(--radius-lg) 0 0 var(--radius-lg)}
+.drawer-head{border-radius:var(--radius-lg) 0 0 0}
+.home-guide iframe{border-radius:var(--radius-lg)}
+@media(max-width:700px){:root{--radius-md:13px;--radius-lg:17px}.drawer{border-radius:var(--radius-lg) 0 0 var(--radius-lg)}}
